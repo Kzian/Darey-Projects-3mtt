@@ -68,14 +68,56 @@ Useful for large explanations or disabling blocks of code.
 ### Single line and Multiple single-line comments
 
 ```bash
-mkdir shell-scripting-comments #create a folder
-cd shell-scripting-comments #go into the creeted folder
-vi commented_script.sh #creating a file
-ls #check that the file was created
-chmod u+x commented_script.sh #making the file executable for the user
-./commented_script.sh #run the script
-```
+#!/bin/bash
+# commented_script.sh
+# This script demonstrates the use of comments in Bash.
+# It performs tasks like printing messages, creating directories, listing files, and more.
 
+# ---- Script Starts ----
+
+# Print a welcome message
+echo "Welcome to the commented Bash script!"
+
+# Create a directory named 'demo_directory'
+mkdir demo_directory  # Inline comment: mkdir creates a directory
+
+# List all files and directories in the current location
+echo "Listing contents of the current directory:"
+ls -l    # List files in long format
+
+# Change into the newly created directory
+cd demo_directory
+
+# Create a few sample files
+touch file1.txt file2.txt file3.txt
+echo "Sample files created inside demo_directory."
+
+# Display the newly created files
+echo "Here are the files created:"
+ls
+
+# Go back to the original directory
+cd ..
+
+# Clean up by removing the demo_directory and its contents
+rm -r demo_directory
+echo "Clean up done. demo_directory removed."
+
+# This is another way to create
+# a multi-line comment. Each line
+# is prefixed with a # symbol.
+echo "Here is an actual code that gets executed" #this will be shown instead
+
+: '
+This is a multi-line comment.
+The script ends here.
+Thank you for running it!
+'
+
+# ---- Script Ends ----
+```
+![Output2](img/check.png)
+![commented_script.sh](img/check2.png)
 ```bash
 #!/bin/bash
 # This is a single-line comment in Bash
@@ -86,7 +128,6 @@ echo "Hello, you are learning Bash Scripting on DAREY.IO!" # This is also a comm
 # is prefixed with a # symbol.
 echo "Here is an actual code that gets executed" #this will be shown instead
 ```
-![Input](img/check.png)
 ![Output](img/comm3.png)
 
 ### N/B: to save a file using `vi`, use the `esc key` to exit the typing mode and use `:wq `to save and exit.
