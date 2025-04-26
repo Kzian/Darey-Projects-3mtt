@@ -65,24 +65,33 @@ Useful for large explanations or disabling blocks of code.
 
 ## Practice
 
-### Single line comments
+### Single line and Multiple single-line comments
 
 ```bash
+mkdir shell-scripting-comments #create a folder
+cd shell-scripting-comments #go into the creeted folder
+vi commented_script.sh #creating a file
+ls #check that the file was created
+chmod u+x commented_script.sh #making the file executable for the user
+./commented_script.sh #run the script
+```
+
+```bash
+#!/bin/bash
 # This is a single-line comment in Bash
 echo "Hello, you are learning Bash Scripting on DAREY.IO!" # This is also a comment, following a command
-```
-![input1](img/comm1.png)
-![output1](img/comm11.png)
 
-### Multiple single-line comments
-```bash# This is another way to create
+# This is another way to create
 # a multi-line comment. Each line
 # is prefixed with a # symbol.
-echo "Here is an actual code that gets executed"
+echo "Here is an actual code that gets executed" #this will be shown instead
 ```
-![input2](img/comm2.png)
-![output2](img/comm22.png)
+![Input](img/check.png)
+![Output](img/comm3.png)
+
+### N/B: to save a file using `vi`, use the `esc key` to exit the typing mode and use `:wq `to save and exit.
 ---
+
 
 ### ✅ **Good Practices for Comments**
 
