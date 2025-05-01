@@ -263,7 +263,7 @@ else
 fi
 ```
 
-1. Now create a file and name it `control_flow.sh`
+1. Now create a file and name it `check_number.sh`
 2. Put the following: `read -p "Enter a number: " num` and exceute it
 3. ![1](img/cf1.png)
 4. Update the code with the following:
@@ -344,6 +344,7 @@ and execute
 ---
 ## Loop example
 A
+Create a shell script `loop_list.sh` and put the following code:
 ```bash
 for item in item1 item2 item3; do
     echo $item
@@ -457,6 +458,8 @@ It's a **basic loop** — great for beginners — and a perfect example of **rep
 
 ---
 C
+
+Create a shell script `loop_range.sh` and put the following code:
 ```bash
 for i in {1..5}
 do
@@ -516,6 +519,7 @@ The **C-style `for` loop** in Bash — a more flexible way to write loops, espec
 ---
 
 ### 🧾 Code:
+Create a shell script `loop_cstyle.sh` and put the following code:
 ```bash
 for (( i=0; i<5; i++ )); do
     echo "Number $i"
