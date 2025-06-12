@@ -1,4 +1,4 @@
-## ✅ AWS IAM Implementation for Zappy e-Bank**
+## ✅ AWS IAM Implementation for Zappy e-Bank
 
 ### 🧩 **Objective:**
 
