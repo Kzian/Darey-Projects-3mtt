@@ -136,10 +136,13 @@ Both users were tested to confirm that their access was limited to the services 
 * Mary successfully accessed **S3 Dashboard**, confirming hers.
 * Neither user could access services outside their assigned roles — validating the **principle of least privilege**.
 
+---
 
 ## 🚀 **Walkthrough: AWS IAM Implementation for Zappy e-Bank**
 
 ### 🧭 **Step-by-Step Guide**
+
+---
 
 ### **1. Log in to AWS Console**
 
