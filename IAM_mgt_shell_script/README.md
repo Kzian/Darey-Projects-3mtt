@@ -251,7 +251,7 @@ Before running the script:
 
 ```bash
 chmod +x aws-iam-manager.sh
-./iam_manager.sh
+./aws-iam-manager.sh
 ```
 
 To validate:
