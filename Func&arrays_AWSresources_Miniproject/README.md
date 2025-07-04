@@ -367,3 +367,5 @@ create_s3_buckets
 ![ec2](img/ec22.png)
 ![createdec2](img/ec2s3.png)
 ![createds3](img/s3.png)
+![ec2confirmed](img/awsec2.png)
+![s3confirmed](img/aws3.png)
