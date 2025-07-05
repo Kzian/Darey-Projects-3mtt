@@ -1,4 +1,4 @@
-# 📝 **Professional Summary: Auto Scaling with ALB using Launch Template**
+# 📝 **Auto Scaling with ALB using Launch Template**
 
 This mini project demonstrates how to configure **Auto Scaling in AWS** integrated with an **Application Load Balancer (ALB)** using a **Launch Template**. The goal is to create a scalable and resilient architecture that dynamically adjusts the number of EC2 instances based on demand.
 
