@@ -1,4 +1,4 @@
-# 🧱 Worling with Docker Containers
+# 🧱 Working with Docker Containers
 
 Building upon the previous Docker image project, where I pulled, built, tagged, and pushed a custom NGINX image, I progressed into **Docker container management**. This next phase focused on understanding how to run containers from images, manage their lifecycle, and execute basic container operations. These foundational container tasks are essential for effective Docker-based development and deployment workflows.
 
