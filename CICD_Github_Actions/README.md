@@ -1,3 +1,5 @@
+![CI/CD Pipeline](https://github.com/Kzian/cicd_git_actions/actions/workflows/ci.yml/badge.svg)
+
 # CI/CD Project: From Zero to Heroku (with Tests, Workflows, and Real-World Fixes)
 
 - This document walks through **everything** done in this project — from first setup to a fully working CI/CD pipeline that runs **tests** and **deploys automatically to Heroku**. It also includes **every error emcountered** and **how they were fixed**.
@@ -517,6 +519,112 @@ After a successful run:
 ![24](img/workflow1.png)
 
 ![25](img/herokucred.png)
+
+
+# UPDATE
+
+## 📝29/08/25
+
+* **Matrix Builds Refined**
+  Initially tried Node 14/16/18/20, but Express 5 required `Object.hasOwn` (only in Node 15+). Finalized matrix on **16.x, 18.x, and 20.x**, with **Node 20 as the required runtime**.
+
+* **Linting Setup**
+
+  * Installed **ESLint v8** as a devDependency.
+  * Added a basic `.eslintrc.json` config.
+  * Configured CI so linting runs **only on Node 20** (avoids crashes on older versions).
+
+* **Test Adjustments**
+
+  * Confirmed unit and integration tests run successfully on Node 20.
+  * Allowed 16.x and 18.x jobs to fail without blocking the pipeline (`continue-on-error`).
+
+* **Deployment Fixes**
+
+  * Updated the deploy job to use `actions/checkout@v3` with `fetch-depth: 0` to fix Heroku’s **shallow clone rejection**.
+  * Secured deployment via `HEROKU_API_KEY` GitHub secret in the remote URL.
+  * Verified successful deployment logs to Heroku.
+
+* **Readme Enhancement**
+  Added a **pipeline summary table** showing which Node versions run tests, lint, and deploy:
+
+  | Node.js Version | Lint             | Tests                 | Deployment            |
+  | --------------- | ---------------- | --------------------- | --------------------- |
+  | 16.x            | ❌ (not required) | ✅ / ❌ (informational) | –                     |
+  | 18.x            | ❌ (not required) | ✅ / ❌ (informational) | –                     |
+  | 20.x (primary)  | ✅                | ✅                     | 🚀 Deployed to Heroku |
+
+---
+
+**.github/workflows/ci.yml**
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm install
+
+      # Run ESLint only on Node 20
+      - name: Run Linter
+        if: matrix.node-version == '20.x'
+        run: npx eslint .
+
+      - name: Run Tests
+        run: npm test
+
+    # Let 16 & 18 fail without blocking, require 20
+    continue-on-error: ${{ matrix.node-version != '20.x' }}
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0   # 👈 ensures full history for Heroku push
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Deploy to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/cicd-demo-app.git
+          git push heroku main --force
+
 
 
 
